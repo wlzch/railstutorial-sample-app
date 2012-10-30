@@ -14,6 +14,7 @@ guard 'rspec', :version => 2, :all_after_pass => false do
       (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
                         "spec/requests/#{m[1]}_pages_spec.rb")
   end
+  watch (%r{^app/models/(.+)/})
 end
 
 guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
