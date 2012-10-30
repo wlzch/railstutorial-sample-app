@@ -61,6 +61,14 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe 'when email is upcase' do
+    it 'should saved in downcase' do
+      @user.email = 'USER@example.com'
+      @user.save
+      @user.email.should eq 'user@example.com'
+    end
+  end
+
   describe 'when password is not present' do
     before { @user.password = @user.password_confirmation = ' ' }
     it { should_not be_valid }
