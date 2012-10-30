@@ -14,7 +14,8 @@ guard 'rspec', :version => 2, :all_after_pass => false do
       (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
                         "spec/requests/#{m[1]}_pages_spec.rb")
   end
-  watch (%r{^app/models/(.+)/})
+  watch (%r{^app/models/(.+)\.rb$}) { |m| "spec/models/#{m[1]}_spec.rb" }
+  watch (%r{^spec/.+(_spec|Spec)\.rb$})
 end
 
 guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
@@ -26,5 +27,4 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
-  watch('spec/support/')
 end
