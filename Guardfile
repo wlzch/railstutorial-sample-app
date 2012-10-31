@@ -28,4 +28,5 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch ('Gemfile.lock')
   watch ('spec/spec_helper.rb') { :rspec }
   watch ('test/test_helper.rb') { :test_unit }
+  watch (%r{^spec/support/.+\.rb$})
 end
