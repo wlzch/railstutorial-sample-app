@@ -11,6 +11,8 @@ describe "Authentication" do
 
       it { should have_selector 'title', text: 'Sign in' }
       it { should have_error_message('Invalid') }
+      it { should_not have_link 'Profile' }
+      it { should_not have_link 'Settings' }
 
       describe "after visiting another page" do
         before { click_link "Home" }
@@ -119,6 +121,15 @@ describe "Authentication" do
       describe "submiting a DELETE request to Users#destroy with admin user" do
         before { delete user_path user }
         specify { response.should redirect_to users_path }
+      end
+    end
+
+    describe "signed in user" do
+      before { sign_in user }
+
+      describe "visitting signup page" do
+        before { visit signup_path }
+        specify { current_path.should eq root_path }
       end
     end
 

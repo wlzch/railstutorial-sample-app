@@ -116,4 +116,8 @@ describe User do
 
     it { should be_admin }
   end
+
+  describe "admin attribute not accessible" do
+    it { should_not be_accessible(:admin) }
+  end
 end
