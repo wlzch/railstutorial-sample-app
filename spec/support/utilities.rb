@@ -22,6 +22,16 @@ RSpec::Matchers.define :have_error_message do |message|
   end
 end
 
+RSpec::Matchers.define :have_success_message do |message|
+  match do |page|
+    if message.nil?
+      page.should have_selector 'div.alert.alert-success'
+    else
+      page.should have_selector 'div.alert.alert-success', text: message
+    end
+  end
+end
+
 Rspec::Matchers.define :be_accessible do |attribute|
   match do |response|
     response.class.accessible_attributes.include?(attribute)
