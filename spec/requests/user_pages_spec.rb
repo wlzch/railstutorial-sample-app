@@ -24,6 +24,7 @@ describe "User pages" do
       it { should have_content m1.content }
       it { should have_content m2.content }
       it { should have_content user.microposts.count }
+      it { should_not have_link 'x' }
     end
   end
 
